@@ -26,29 +26,21 @@ MainWindow::MainWindow(QWidget *parent)
     const std::string user_agent_firefox_linux115 = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
     QString user_agent = QString::fromStdString(user_agent_firefox_linux115);
     QWebEngineView *view = new QWebEngineView(parent);
-//    view->load(url);
-//    view->show();
 
-//    QWebEngineProfile *profile = new QWebEngineProfile();
-//     profile->setHttpUserAgent(user_agent);
+    // unique profile store per qtwbengine version
+    QWebEngineProfile *profile = new QWebEngineProfile(QString::fromLatin1("MyApplication.%1").arg(qWebEngineChromiumVersion()));
 
+    profile->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    profile->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
+    profile->setHttpUserAgent(user_agent);
+    // page using profile
+    QWebEnginePage *page = new QWebEnginePage(profile);
 
-    QWebEngineProfile::defaultProfile()->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-    QWebEngineProfile::defaultProfile()->settings()->setAttribute(QWebEngineSettings::DnsPrefetchEnabled, true);
-    QWebEngineProfile::defaultProfile()->setHttpUserAgent(user_agent);
-
-
-//    QWebEnginePage *page = new QWebEnginePage(profile);
-//    page->setUrl(url);
-//    view->setPage(page);
-     view->load(url);
-
-
+//    QWebEngineProfile::defaultProfile()->setHttpUserAgent(user_agent);
+     view->setPage(page);
+     view->setUrl(url);
 
     vbox_main->addWidget(view);
-
-
-
 
 }
 
