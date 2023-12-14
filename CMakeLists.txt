@@ -56,6 +56,17 @@ install(TARGETS wassup
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
+if(UNIX AND NOT APPLE)
+    # for Linux, BSD, Solaris, Minix
+    if(EXISTS "/.flatpak-info")
+        install(PROGRAMS assets/com.soufrabi.wassup  DESTINATION ${KDE_INSTALL_APPDIR})
+    else()
+    endif()
+
+
+endif()
+
+
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(wassup)
 endif()

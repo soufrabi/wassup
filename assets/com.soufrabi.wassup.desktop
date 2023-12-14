@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Wassup
+GenericName=Wassup
+Comment=Whatsapp Client
+Exec=wassup
+Terminal=false
+# Icon=com.soufrabi.wassup
+Type=Application
+Keywords=wassup;whatsapp;
+X-KDE-PluginInfo-Website=http://flatpak.org
+Categories=Qt;KDE
