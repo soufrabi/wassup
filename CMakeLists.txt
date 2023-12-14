@@ -59,9 +59,9 @@ install(TARGETS wassup
 if(UNIX AND NOT APPLE)
     # for Linux, BSD, Solaris, Minix
     if(EXISTS "/.flatpak-info")
-        include(KDEInstallDirs)
+#        include(KDEInstallDirs)
 #        include(KDECMakeSettings)
-        install(PROGRAMS assets/com.soufrabi.wassup.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+        install(PROGRAMS assets/com.soufrabi.wassup.desktop  DESTINATION /app/share/applications )
         # install(FILES assets/com.soufrabi.wassup.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
     else()
     endif()
