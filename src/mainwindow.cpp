@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     vbox_main->addWidget(view);
 
+    // Allow Web Notifications
+    view->page()->setFeaturePermission(url, QWebEnginePage::Notifications, QWebEnginePage::PermissionGrantedByUser);
+
 }
 
 
