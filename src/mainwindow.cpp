@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "./notificationpopup.h"
 #include <QVBoxLayout>
 #include <QWebEngineView>
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
 #include <QWebEnginePage>
 #include <QWebEngineDownloadRequest>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -44,7 +46,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Allow Web Notifications
     view->page()->setFeaturePermission(url, QWebEnginePage::Notifications, QWebEnginePage::PermissionGrantedByUser);
-
+    auto popup = new NotificationPopup(view);
+    profile->setNotificationPresenter([&] (std::unique_ptr<QWebEngineNotification> notification)
+                                         { popup->present(notification); });
 }
 
 
