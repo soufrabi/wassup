@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     QUrl url = QUrl(QString::fromStdString(url_whatsapp));
 
     const std::string user_agent_firefox_linux115 = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
-    QString user_agent = QString::fromStdString(user_agent_firefox_linux114);
+    QString user_agent = QString::fromStdString(user_agent_firefox_linux115);
     QWebEngineView *view = new QWebEngineView(parent);
 //    view->load(url);
 //    view->show();
