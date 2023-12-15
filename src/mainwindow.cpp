@@ -44,8 +44,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     vbox_main->addWidget(view);
 
+    QObject::connect(view->page(), &QWebEnginePage::featurePermissionRequested,
+                         [&] (const QUrl &origin, QWebEnginePage::Feature feature) {
+                             if (feature != QWebEnginePage::Notifications)
+                                 return;
+                             view->page()->setFeaturePermission(origin, feature, QWebEnginePage::PermissionGrantedByUser);
+                         });
+
     // Allow Web Notifications
-    view->page()->setFeaturePermission(url, QWebEnginePage::Notifications, QWebEnginePage::PermissionGrantedByUser);
+//    view->page()->setFeaturePermission(url, QWebEnginePage::Notifications, QWebEnginePage::PermissionGrantedByUser);
     auto popup = new NotificationPopup(view);
     profile->setNotificationPresenter([&] (std::unique_ptr<QWebEngineNotification> notification)
                                          { popup->present(notification); });
